@@ -31,22 +31,17 @@ public class TASK4 {
 
     public static void main(String[] args) {
         try {
-            // Faz a chamada para a API e obtém a resposta como uma string JSON
             String jsonResponse = callAPI(API_ENDPOINT);
 
-            // Converte a resposta JSON em um JSONArray
             JSONArray jsonArray = new JSONArray(jsonResponse);
 
-            // Conta quantos registros existem para cada gênero
             Map<String, Integer> genderCounts = countGenders(jsonArray);
 
-            // Cria uma string com os resultados
             StringBuilder resultString = new StringBuilder();
             for (Map.Entry<String, Integer> entry : genderCounts.entrySet()) {
                 resultString.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
             }
 
-            // Salva a string de resultados em um arquivo no bucket S3
             saveToS3(resultString.toString());
             System.out.println(resultString);
         } catch (Exception e) {
