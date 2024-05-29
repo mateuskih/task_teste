@@ -10,6 +10,7 @@
 # IntelliJ generated files.
 *.iml
 .idea
+.env
 
 # Autogenerared OS X clutter.
 .DS_Store
