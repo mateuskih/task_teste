@@ -7,8 +7,11 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.example.util.getEnviromenmt;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -25,9 +28,12 @@ import java.util.Map;
  */
 
 public class TASK4 {
-    private static final String API_ENDPOINT = "https://3ospphrepc.execute-api.us-west-2.amazonaws.com/prod/RDSLambda";
-    private static final String S3_BUCKET_NAME = "interview-digiage";
-    private static final String S3_FILE_NAME = "gender_counts.txt";
+    static Map<String, String> env = getEnviromenmt.load();
+    private static final String API_ENDPOINT = env.get("API_ENDPOINT");
+    private static final String S3_BUCKET_NAME = env.get("S3_BUCKET_NAME");
+    private static final String S3_FILE_NAME = env.get("S3_FILE_NAME");
+    private static final String S3_ACESS_KEY = env.get("S3_ACESS_KEY");
+    private static final String S3_SECRET_ACCESS_KEY = env.get("S3_SECRET_ACCESS_KEY");
 
     public static void main(String[] args) {
         try {
@@ -75,7 +81,7 @@ public class TASK4 {
     }
 
     public static void saveToS3(String content) {
-        BasicAWSCredentials credentials = new BasicAWSCredentials("AKIAU7BHLOLBKPZTHAP2", "OLBdHAT62RJ5Odwl98JIbOWKL9LQxtOBYqNMQ9TY");
+        BasicAWSCredentials credentials = new BasicAWSCredentials(S3_ACESS_KEY, S3_SECRET_ACCESS_KEY);
         AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
                 .withCredentials(new AWSStaticCredentialsProvider(credentials))
                 .withRegion(Regions.US_WEST_2)
