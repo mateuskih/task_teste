@@ -1,37 +1,65 @@
 package com.example;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class TASK5API {
-
-    private final TASK5 task5;
-
-    public TASK5API(TASK5 task5) {
-        this.task5 = task5;
-    }
+    private Map<Integer, User> users = new HashMap<Integer, User>();
+    private int idCounter = 1;
 
     // POST /api/users
     public int createUser(String name, String email, String password) {
-        return task5.registerUser(name, email, password);
+        int id = idCounter++;
+        User user = new User(id, name, email, password);
+        users.put(id, user);
+        return id;
     }
 
     // GET /api/users/{id}
     public User getUser(int id) {
-        return task5.getUser(id);
+        return users.get(id);
+    }
+
+    // GET /api/users
+    public Map<Integer, User> getUsers() {
+        return users;
     }
 
     // PUT /api/users/{id}
     public void updateUser(int id, String name, String email, String password) {
-        task5.updateUser(id, name, email, password);
+        if (users.containsKey(id)) {
+            User user = users.get(id);
+            user.setName(name);
+            user.setEmail(email);
+            user.setPassword(password);
+        }
     }
 
     // DELETE /api/users/{id}
     public void deleteUser(int id) {
-        task5.deleteUser(id);
+        users.remove(id);
     }
 
-    // Utility method to get all users (for testing purposes)
-    public Map<Integer, User> getAllUsers() {
-        return task5.getUsers();
+    // POST /api/authenticate
+    public boolean authenticate(String email, String password) {
+        for (User user : getUsers().values()) {
+            if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
+                return true;
+            }
+        }
+        return false; 
+    }
+
+    // GET /api/users?name={name}
+    public List<User> getUsersByName(String name) {
+        List<User> usersByName = new ArrayList<User>();
+        for (User user : getUsers().values()) {
+            if (user.getName().equals(name)) {
+                usersByName.add(user);
+            }
+        }
+        return usersByName;
     }
 }
