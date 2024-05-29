@@ -20,7 +20,7 @@ public class TASK3 {
         System.out.println("\nNumber of distinct items: " + countDistinctItems(list));
     }
 
-    private static List<String> generateRandomStringList(int count) {
+    public static List<String> generateRandomStringList(int count) {
         List<String> list = new ArrayList<String>();
         Random random = new Random();
         for (int i = 0; i < count; i++) {
@@ -29,7 +29,7 @@ public class TASK3 {
         return list;
     }
 
-    private static String generateRandomString(int length) {
+    public static String generateRandomString(int length) {
         StringBuilder sb = new StringBuilder();
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         for (int i = 0; i < length; i++) {
@@ -38,13 +38,13 @@ public class TASK3 {
         return sb.toString();
     }
 
-    private static void printList(List<String> list) {
+    public static void printList(List<String> list) {
         for (String item : list) {
             System.out.println(item);
         }
     }
 
-    private static int countDistinctItems(List<String> list) {
+    public static int countDistinctItems(List<String> list) {
         Set<String> distinctItems = new HashSet<String>(list); 
         return distinctItems.size();
     }

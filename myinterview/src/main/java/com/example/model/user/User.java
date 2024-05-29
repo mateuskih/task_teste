@@ -1,4 +1,4 @@
-package com.example;
+package com.example.model.user;
 
 public class User {
     private int id;

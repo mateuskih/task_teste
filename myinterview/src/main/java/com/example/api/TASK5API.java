@@ -1,9 +1,11 @@
-package com.example;
+package com.example.api;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.example.model.user.User;
 
 public class TASK5API {
     private Map<Integer, User> users = new HashMap<Integer, User>();

@@ -69,7 +69,7 @@ public class TASK4 {
         }
     }
 
-    private static Map<String, Integer> countGenders(JSONArray jsonArray) {
+    public static Map<String, Integer> countGenders(JSONArray jsonArray) {
         Map<String, Integer> genderCounts = new HashMap<String, Integer>();
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -79,7 +79,7 @@ public class TASK4 {
         return genderCounts;
     }
 
-    private static void saveToS3(String content) {
+    public static void saveToS3(String content) {
         BasicAWSCredentials credentials = new BasicAWSCredentials("AKIAU7BHLOLBKPZTHAP2", "OLBdHAT62RJ5Odwl98JIbOWKL9LQxtOBYqNMQ9TY");
         AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
                 .withCredentials(new AWSStaticCredentialsProvider(credentials))
