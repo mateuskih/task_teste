@@ -18,6 +18,12 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Write a list and add an aleatory number of Strings. In the end, print out how
+ * many distinct itens exists on the list.
+ *
+ */
+
 public class TASK4 {
     private static final String API_ENDPOINT = "https://3ospphrepc.execute-api.us-west-2.amazonaws.com/prod/RDSLambda";
     private static final String S3_BUCKET_NAME = "interview-digiage";
